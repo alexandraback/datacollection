@@ -1,0 +1,98 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+	freopen("C-small-attempt5.in","r",stdin);
+	freopen("C-small-attempt5.out","w",stdout);
+	int abc,T,;
+	long long aa[120][2],bb[120][2],a[120][2],b[120][2],ans,i,j,k,n,p,m;
+	scanf("%d",&T);
+	for(abc=1;abc<=T;abc++)
+	{
+		ans=0;
+		scanf("%I64d %I64d",&n,&m);
+		memset(aa,0,sizeof(aa));
+		memset(bb,0,sizeof(bb));
+		for(i=0;i<n;i++)
+			scanf("%I64d %I64d",&aa[i][0],&aa[i][1]);
+		for(i=0;i<m;i++)
+			scanf("%I64d %I64d",&bb[i][0],&bb[i][1]);
+		for(i=0;i<=m;i++)
+		{
+			for(j=i;j<=m;j++)
+			{
+				for(k=0;k<n;k++)
+				{
+					a[k][0]=aa[k][0];
+					a[k][1]=aa[k][1];
+				}
+				for(k=0;k<m;k++)
+				{
+					b[k][0]=bb[k][0];
+					b[k][1]=bb[k][1];
+				}
+				long long tmp=0,t=0;
+				for(p=0;p<i;p++)
+				{
+					if(a[0][0]==0)break;
+					if(a[0][1]==b[p][1])
+					{
+						if(a[0][0]>=b[p][0])
+						{
+							a[0][0]-=b[p][0];
+							tmp+=b[p][0];
+							t=p+1;
+						}
+						else
+						{
+							tmp+=a[0][0];
+							a[0][0]=0;
+							b[p][0]-=a[0][0];
+							t=p;
+						}
+					}
+				}
+				for(p=t;p<j;p++)
+				{
+					if(a[1][0]==0)break;
+					if(a[1][1]==b[p][1])
+					{
+						if(a[1][0]>=b[p][0])
+						{
+							a[1][0]-=b[p][0];
+							tmp+=b[p][0];
+							t=p+1;
+						}
+						else
+						{
+							tmp+=a[1][0];
+							a[1][0]=0;
+							b[p][0]-=a[1][0];
+							t=p;
+						}
+					}
+				}
+				for(p=t;p<m;p++)
+				{
+					if(a[2][0]==0)break;
+					if(a[2][1]==b[p][1])
+					{
+						if(a[2][0]>=b[p][0])
+						{
+							a[2][0]-=b[p][0];
+							tmp+=b[p][0];
+						}
+						else
+						{
+							tmp+=a[2][0];
+							a[2][0]=0;
+							b[p][0]-=a[2][0];
+						}
+					}
+				}
+				if(tmp>ans)ans=tmp;
+			}
+		}
+		printf("Case #%d: %I64d\n",abc,ans);
+	}
+}

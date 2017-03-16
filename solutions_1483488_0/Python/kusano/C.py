@@ -1,0 +1,1 @@
+for i in range(input()):A,B=map(int,raw_input().split());print "Case #%s: %s"%(i+1,sum(len([m for m in set(int(str(n)[i:]+str(n)[:i])for i in range(1,len(str(n))))if A<=m<n])for n in xrange(A,B+1)))
