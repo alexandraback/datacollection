@@ -1,0 +1,220 @@
+
+//g++ -o A A.cpp
+
+//g++ -Wl,--stack,16777216 -o A A.cpp
+
+
+//#include <bits/stdc++.h>
+//using namespace std;
+
+#include <iostream>
+using std::cin;
+using std::cout;
+using std::string;
+using std::endl;
+
+#include <algorithm> 
+using std::sort;
+using std::min;
+using std::max;
+using std::pair;
+//pair <int,int> data[100];sort(data,data+100);
+
+#include <math.h>
+//sqrt(123.123)
+//ceil(0.12)=1
+//pow(x,2)=x^2
+
+#include<cstdio>
+//printf()
+
+#include <map>
+using std::map;
+//map <string,int> x;
+
+#include <stdlib.h>
+//abs(-123);
+
+#include <vector>
+using std::vector;
+//vector<int> x;
+//x.push_back(0);x.push_back(1);cout<<x[0]<<' '<<x[1];
+//x[0]=100;
+//x.pop_back();
+//vector<int> x(10);     ==>   x[0]==x[1]==...=x[9]==0 default
+//x.push_back(100);      ==>   x[10]=100; 
+//vector<int> x(10,3);   ==>   x[0]==x[1]==...==x[9]==3;
+//vector<int> y(x);      ==>   y[0]==y[1]==...==y[9]==3;
+//cout<<x.size();        ==>   10
+//x.reserve(4)           ==>   (memory alloc 4) && !(size+=4 don't change size) 
+
+#include <queue>
+using std::queue;
+
+#include <deque>
+using std::deque;
+
+/*
+int gcd(int a, int b)
+{ 
+    \\O(log(max(a,b)))
+    int t;
+    while(b!=0)
+    {
+        t=a%b;
+        a=b;
+        b=t;
+    }
+    return a;
+    
+}
+*/
+
+/*
+long long C(int x,int y)
+{
+    long long answer=1;
+    int i;
+    if(y>x-y)
+    {
+        y=x-y;
+    }
+    for(i=1;i<=y;i++)
+    {
+        answer*=(x+1-i);
+        answer/=i;
+    }
+    return answer;
+}
+
+*/
+
+int main() {
+  freopen("in", "r", stdin);
+  freopen("out", "w", stdout);
+  int tt;
+  scanf("%d", &tt);
+  for (int qq = 1; qq <= tt; qq++) {
+    printf("Case #%d: ", qq);
+	
+	int J,P,S,K;cin>>J>>P>>S>>K;
+	
+	
+	
+	
+	int jps[10][10][10]={0,};
+	int jp[10][10]={0,};
+	int js[10][10]={0,};
+	int ps[10][10]={0,};
+	
+	int answer=0;
+	
+
+	for(int x=0;x<J;x++){
+		for(int y=0;y<P;y++){
+			for(int z=0;z<S;z++){
+						jp[x][y]++;
+						js[x][z]++;
+						ps[y][z]++;
+						jps[x][y][z]=1;
+					
+				
+			}
+		}
+	}
+
+for(int i=0;i<101;i++){	
+	for(int x=0;x<J;x++){
+		for(int y=0;y<P;y++){
+			for(int z=0;z<S;z++){
+				if(jp[x][y]>K && js[x][z]>K && ps[y][z]>K && jps[x][y][z]){
+						jp[x][y]--;
+						js[x][z]--;
+						ps[y][z]--;
+						jps[x][y][z]=0;
+				}				
+			}
+		}
+	}
+}
+
+for(int i=0;i<101;i++){		
+	for(int x=0;x<J;x++){
+		for(int y=0;y<P;y++){
+			for(int z=0;z<S;z++){
+				if(jp[x][y]>K && js[x][z]>K && jps[x][y][z] ){
+						jp[x][y]--;
+						js[x][z]--;
+						jps[x][y][z]=0;
+					
+				}
+				if(jp[x][y]>K && ps[y][z]>K && jps[x][y][z]){
+						jp[x][y]--;
+						ps[y][z]--;
+						jps[x][y][z]=0;
+					
+				}
+				if(js[x][z]>K && ps[y][z]>K && jps[x][y][z]){
+						js[x][z]--;
+						ps[y][z]--;
+						jps[x][y][z]=0;
+					
+				}
+			}
+		}
+	}
+}
+
+for(int i=0;i<101;i++){		
+	for(int x=0;x<J;x++){
+		for(int y=0;y<P;y++){
+			for(int z=0;z<S;z++){
+				if(jp[x][y]>K && jps[x][y][z]){
+						jp[x][y]--;
+						jps[x][y][z]=0;
+					
+				}
+				if(ps[y][z]>K && jps[x][y][z]){
+						ps[y][z]--;
+						jps[x][y][z]=0;
+					
+				}
+				if(js[x][z]>K && jps[x][y][z]){
+						js[x][z]--;
+						jps[x][y][z]=0;					
+				}
+			}
+		}
+	}
+}
+
+
+	
+	for(int x=0;x<J;x++){
+		for(int y=0;y<P;y++){
+			for(int z=0;z<S;z++){
+				if(jps[x][y][z]==1){
+					answer++;
+				}
+			}
+		}
+	}
+	
+	printf("%d\n",answer);
+	
+	for(int x=0;x<J;x++){
+		for(int y=0;y<P;y++){
+			for(int z=0;z<S;z++){
+				if(jps[x][y][z]==1){
+					printf("%d %d %d\n",x+1,y+1,z+1);
+				}
+			}
+		}
+	}
+	
+
+	
+	//printf("\n");
+  }
+  return 0;
+}
