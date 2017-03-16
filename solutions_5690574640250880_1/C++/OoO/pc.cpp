@@ -1,0 +1,202 @@
+#include<iostream>
+#include<stdio.h>
+#define SIZE 60
+using namespace std;
+char answerBoard[SIZE][SIZE];
+int main()
+{
+	freopen("C-large.in","r",stdin);
+	freopen("c.txt","w",stdout);
+	int cases,T,R,C,M,total,i,j,pairs2;
+	cin>>T;
+	for(cases=1;cases<=T;cases++)
+	{
+		printf("Case #%d:\n",cases);
+		cin>>R>>C>>M;
+		for(i=1;i<=R;i++)
+			for(j=1;j<=C;j++)
+				answerBoard[i][j]='*';
+		if(M==0)
+		{
+			cout<<'c';
+			for(j=2;j<=C;j++)
+				cout<<'.';
+			cout<<endl;
+			for(i=2;i<=R;i++)
+			{
+				for(j=1;j<=C;j++)
+					cout<<'.';
+				cout<<endl;
+			}
+			continue;
+		}
+		total=R*C-M;
+		//////////////////
+		//only 1 column or row
+		//////////////////
+		if(R==1 || C==1)
+		{
+			answerBoard[1][1]='c';
+			total--;
+			if(R==1)
+			{
+				for(j=2;j<=C;j++)
+				{
+					if(total==0)
+						break;
+					answerBoard[1][j]='.';
+					total--;
+				}
+			}
+			if(C==1)
+			{
+				for(i=2;i<=R;i++)
+				{
+					if(total==0)
+						break;
+					answerBoard[i][1]='.';
+					total--;
+				}
+			}
+			for(i=1;i<=R;i++)
+			{
+				for(j=1;j<=C;j++)
+					cout<<answerBoard[i][j];
+				cout<<endl;
+			}
+			continue;
+		}
+		if(total==1)
+		{
+			cout<<'c';
+			for(j=2;j<=C;j++)
+				cout<<'*';
+			cout<<endl;
+			for(i=2;i<=R;i++)
+			{
+				for(j=1;j<=C;j++)
+					cout<<'*';
+				cout<<endl;
+			}
+			continue;
+		}
+		if(total<4 || total==5 || total==7)
+		{
+			cout<<"Impossible"<<endl;
+			continue;
+		}
+		if(R==2 || C==2)
+		{
+			if(total&1)
+			{
+				cout<<"Impossible"<<endl;
+				continue;
+			}
+		}
+		for(i=1;i<=R;i++)
+			for(j=1;j<=C;j++)
+				answerBoard[i][j]='*';
+		answerBoard[1][1]='c';
+		answerBoard[1][2]='.';
+		answerBoard[2][1]='.';
+		answerBoard[2][2]='.';
+		
+		total-=4;
+		if(R<2)
+			total+=2;
+		if(C<2)
+			total+=2;
+		if(R<2 && C<2)
+			total--;
+		if(total==0)
+		{
+			for(i=1;i<=R;i++)
+			{
+				for(j=1;j<=C;j++)
+					cout<<answerBoard[i][j];
+				cout<<endl;
+			}
+			continue;
+		}
+		pairs2=total/2;
+		if(R>2 && C>1)
+		{
+			pairs2--;
+			answerBoard[3][1]='.';
+			answerBoard[3][2]='.';
+			if(pairs2==0)
+			{
+				if(total&1)
+					cout<<"Impossible"<<endl;
+				else
+				{
+					for(i=1;i<=R;i++)
+					{
+						for(j=1;j<=C;j++)
+							cout<<answerBoard[i][j];
+						cout<<endl;
+					}
+				}
+				continue;
+			}
+		}
+		for(j=3;j<=C;j++)
+		{
+			if(answerBoard[1][j]=='*' && answerBoard[2][j]=='*')
+			{
+				pairs2--;
+				answerBoard[1][j]='.';
+				answerBoard[2][j]='.';
+				if(pairs2==0)
+				{
+					if(total&1)
+						answerBoard[3][3]='.';
+					break;
+				}
+			}
+		}
+		if(pairs2==0)
+		{
+			for(i=1;i<=R;i++)
+			{
+				for(j=1;j<=C;j++)
+					cout<<answerBoard[i][j];
+				cout<<endl;
+			}
+			continue;
+		}
+		pairs2++;
+		answerBoard[3][1]='*';
+		answerBoard[3][2]='*';
+		for(j=1;j<C;j+=2)
+		{
+			for(i=3;i<=R;i++)
+				if(answerBoard[i][j]=='*' && answerBoard[i][j+1]=='*')
+				{
+					answerBoard[i][j]='.';
+					answerBoard[i][j+1]='.';
+					pairs2--;
+					if(pairs2==0)
+						break;
+				}
+			if(pairs2==0)
+			{
+				if(total&1)
+				{
+					if(i<R && j>1)
+						answerBoard[i+1][j]='.';
+					else
+						answerBoard[3][j+2]='.';
+				}
+				break;
+			}
+		}
+		for(i=1;i<=R;i++)
+		{
+			for(j=1;j<=C;j++)
+				cout<<answerBoard[i][j];
+			cout<<endl;
+		}
+	}
+	return 0;
+}

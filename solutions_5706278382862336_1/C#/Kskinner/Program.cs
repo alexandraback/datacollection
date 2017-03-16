@@ -1,0 +1,166 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1C_2014
+{
+    public class Program
+    {
+        long P, Q;
+
+        public void ReadData()
+        {
+            var ar = ReadLine().Split('/');
+            P = long.Parse(ar[0]);
+            Q = long.Parse(ar[1]);
+        }
+
+        static long GCD(long a, long b)
+        {
+            return b == 0 ? a : GCD(b, a % b);
+        }        
+
+        public string Solve()
+        {
+            cache.Clear();
+            long s = Solve(P, Q);
+            return s == long.MaxValue ? "impossible" : s.ToString();
+        }
+
+        Dictionary<Tuple<long, long>, long> cache = new Dictionary<Tuple<long, long>, long>();
+        public long Solve(long p, long q)
+        {
+            if (p == 0)
+                return long.MaxValue;
+
+            long gcd = GCD(p, q);
+            p /= gcd;
+            q /= gcd;
+
+            if ((q & (q - 1)) != 0)
+                return long.MaxValue;
+
+            if (p >= q / 2) {
+                return 1;
+            }            
+
+            if (p == 1)
+            {
+                return (long)Math.Log(q, 2);
+            }
+
+            var cacheKey = new Tuple<long, long>(p, q);
+            if (cache.ContainsKey(cacheKey))
+                return cache[cacheKey];
+
+            long s = (long)Math.Log(q, 2) + 1;
+            long u = p;
+            while (u > 0)
+            {
+                s--;
+                u /= 2;
+            }
+
+
+            //long s = long.MaxValue;
+            //for (int pp = 0; pp <= p/2; pp++)
+            //{
+            //    long t = 1 + Math.Min(Solve(pp, q / 2), Solve(p - pp, q / 2));
+            //    if (t < s)
+            //        s = t;
+            //}
+
+            cache[cacheKey] = s;
+
+            return s;
+        }
+
+        static StreamReader reader;
+
+        static void Main(string[] args)
+        {
+            string filename = args.Length > 0 ? args[0] : "test.in";
+            string outFileName = filename.Replace(".in", ".out");
+            string expectedFileName = filename.Replace(".in", ".expected");
+
+            using (reader = File.OpenText(filename))
+            using (var outFile = File.CreateText(outFileName))
+            {
+                int T = ReadInt();
+                Console.WriteLine("{0} test cases", T);
+
+                for (int tc = 1; tc <= T; tc++)
+                {
+                    Console.WriteLine("Starting test case {0}", tc);
+                    var problem = new Program();
+                    problem.ReadData();
+                    string solution = problem.Solve();
+
+                    outFile.WriteLine("Case #{0}: {1}", tc, solution);
+                    Console.WriteLine("Case #{0}: {1}", tc, solution);
+                }
+            }
+
+            if (File.Exists(expectedFileName))
+            {
+                CompareOutputToExpected(outFileName, expectedFileName);
+            }
+        }
+
+        private static void CompareOutputToExpected(string outFileName, string expectedFileName)
+        {
+            string[] expected = File.ReadAllLines(expectedFileName);
+            string[] actual = File.ReadAllLines(outFileName);
+            for (int i = 0; i < Math.Max(expected.Length, actual.Length); i++)
+            {
+                string lineActual = i < actual.Length ? actual[i] : "** missing **";
+                string lineExpected = i < expected.Length ? expected[i] : "** missing **";
+                if (lineActual != lineExpected)
+                {
+                    Console.WriteLine("{0}: Expected: {1} Actual: {2}", (i + 1), lineExpected, lineActual);
+                }
+            }
+        }
+
+        #region Readers
+
+        private static string ReadWord()
+        {
+            StringBuilder word = new StringBuilder();
+            while (reader.Peek() >= 0)
+            {
+                char c = (char)reader.Read();
+                if (Char.IsControl(c) || Char.IsWhiteSpace(c))
+                    break;
+                word.Append(c);
+            }
+            return word.ToString();
+        }
+
+        private static string ReadLine()
+        {
+            return reader.ReadLine();
+        }
+
+        private static int ReadInt()
+        {
+            return int.Parse(ReadLine());
+        }
+
+        private static T Read<T>()
+        {
+            return (T)Convert.ChangeType(ReadLine(), typeof(T));
+        }
+
+        private static T[] ReadArray<T>()
+        {
+            return ReadLine().Split(' ').Select(v => (T)Convert.ChangeType(v, typeof(T))).ToArray();
+        }
+
+        #endregion
+    }
+}
+

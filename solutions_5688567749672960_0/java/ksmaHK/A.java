@@ -1,0 +1,92 @@
+import java.util.*;
+
+public class A {
+public static void main(String [] args) {
+	Scanner scanner = new Scanner(System.in);
+	int nCase = scanner.nextInt();
+	
+	int[] best = new int[1000001];
+	for (int i = 1; i < best.length; i++)
+		best[i] = i;
+	for (int i = 10; i < best.length; i++) {
+		best[i] = Math.min(best[i], best[i-1]+1);
+		int next = (int) Long.parseLong(new StringBuilder(""+i).reverse().toString());
+		best[next] = Math.min(best[i]+1, best[next]);
+	}
+	//for (int i = 1; i < 200; i++)
+	//	System.out.println("" +i+": "+best[i]);
+	
+		
+	for (int nc = 1; nc <= nCase; nc++) {
+		long N = scanner.nextLong();
+		/*
+		int[] best = new int[1000001];
+		for (int i = 1; i < best.length; i++)
+			best[i] = i;
+		for (int i = 10; i < best.length; i++) {
+			int next = (int) Long.parseLong(new StringBuilder(""+i).reverse().toString());
+			best[next] = Math.min(best[i]+1, best[next]);
+		}
+		*/
+		
+		System.out.println("Case #" + nc + ": " + best[(int)N]);
+	}
+	/*
+	for (int nc = 1; nc <= nCase; nc++) {
+		long N = scanner.nextLong();
+		int dN = nDigit(N);
+		long ans = 0;
+		long start = 0;
+		if (N <= 11)
+			ans = N;
+		else {
+			ans = 10;
+			int cd = 2;
+			long d10 = 10;
+			while (cd < dN) {
+				d10 *= 10;
+				long need = d10 - 1;
+				ans += Long.parseLong(new StringBuilder((""+need).substring(0, cd/2)).reverse().toString());
+				ans += Long.parseLong((""+need).substring(cd/2, cd));
+				ans++;
+				cd++;
+			}
+			
+			//System.out.print("ans: "+ans+" ");
+			// no more reverse
+			long ans1 = ans;
+			ans1 += (N - d10);
+			
+			//System.out.print("ans1: "+ans1+" ");
+			// 1 more reverse 
+			long ans2 = ans;
+			ans2 += Long.parseLong(new StringBuilder((""+N).substring(0, dN/2)).reverse().toString());
+			//System.out.print("ans2a: "+ans2+" ");
+			ans2 += Long.parseLong((""+N).substring(dN/2, dN));
+			//System.out.println("ans2b: "+ans2+" ");
+			
+			ans =  Math.min(ans1, ans2);
+		}
+		
+		
+		System.out.println("Case #" + nc + ": " + ans);
+	}
+	*/
+}
+public static int nDigit (long N) {
+	int ans = 1;
+	while ((N /= 10) > 0) ans++;
+	return ans;
+}
+public static int leadDigit (long N) {
+	while ((N / 10) > 0) N /= 10;
+	return (int) N;
+}
+public static int lastDigit (long N) {
+	return (int) (N%10);
+}
+public static long reverseN (long N) {
+	return Long.parseLong(new StringBuilder(Long.toString(N)).reverse().toString());
+}
+
+}

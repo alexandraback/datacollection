@@ -1,0 +1,1 @@
+for i in range(input()):print "Case #%s: %s"%(i+1,"".join("yhesocvxduiglbkrztnwjpfmaq"[ord(c)-97]if c!=" "else c for c in raw_input()))

@@ -1,0 +1,158 @@
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
+#include <cstdio>
+#include <climits>
+#include <cstring>
+#include <ctime>
+#include <cmath>
+#include <cassert>
+#include <vector>
+#include <queue>
+#include <stack>
+#include <list>
+#include <set>
+#include <map>
+#include <bitset>
+#include <algorithm>
+#include <utility>
+#include <numeric>
+#include <functional>
+
+#define forn(i, n) for (int i = 0; i < int(n); i++)
+#define forl(i, n) for (int i = 1; i <= int(n); i++)
+#define ford(i, n) for (int i = int(n) - 1; i >= 0; i--)
+#define fore(i, l, r) for (int i = int(l); i <= int(r); i++)
+#define correct(x, y, n, m) (0 <= (x) && (x) < (n) && 0 <= (y) && (y) < (m))
+#define all(a) (a).begin(), (a).end()
+#define sz(a) int((a).size())
+#define pb(a) push_back(a)
+#define mp(x, y) make_pair((x), (y))
+#define ft first
+#define sc second
+#define x first
+#define y second
+
+using namespace std;
+
+typedef long long li;
+typedef long double ld;
+typedef pair<int, int> pt;
+
+template<typename X> inline X abs(const X& a) { return a < 0? -a: a; }
+template<typename X> inline X sqr(const X& a) { return a * a; }
+
+const int INF = int(1e9);
+const li INF64 = li(1e18);
+const ld EPS = 1e-9, PI = 3.1415926535897932384626433832795;
+
+const int N = 20 * 1000 + 13;
+
+int E, R, n;
+li v[N];
+
+inline bool read()
+{
+	if (scanf("%d%d%d", &E, &R, &n) != 3)
+		return false;
+		
+	forn(i, n) assert(scanf("%I64d", &v[i]) == 1);
+	
+	return true;
+}
+
+map<li, int> cnt;
+
+inline void solve(int test)
+{
+	cnt.clear();
+
+	int e = E;
+	li ans = 0;
+	
+	/*
+	forn(i, n)
+	{
+		if (e == E)
+			ans += v[i] * e;
+		else
+		{
+			int rem = E - e;
+			
+			ford(j, i)
+			{				
+				if (v[j] < v[i])
+				{
+    				int tmp = min(rem, cnt[j]);				
+    				rem -= tmp, cnt[j] -= tmp;
+    				ans -= v[j] * tmp;
+    			}
+				
+				if (cnt[j] == E) break;
+			}
+			
+			e = E - rem;			
+			ans += v[i] * e;
+		}
+		
+		cnt[i] = e;
+		e = min(E, R);
+	}
+	*/
+	
+	forn(i, n)
+	{
+		if (e == E)
+			ans += v[i] * 1LL * e;
+		else
+		{
+			int rem = E - e;
+			
+			for(map<li, int>::iterator it = cnt.begin(); rem != 0 && it != cnt.end(); it++)
+			{
+				if (it->ft >= v[i]) break;
+				
+				int tmp = min(rem, it->sc);				
+				rem -= tmp, it->sc -= tmp;
+				ans -= it->ft * 1LL * tmp;
+			}
+			
+			e = E - rem;			
+			ans += v[i] * 1LL * e;
+			while (!cnt.empty() && (cnt.begin()->sc == 0)) cnt.erase(cnt.begin());
+		}
+		
+		if (e == E) cnt.clear();
+				
+		cnt[v[i]] += e;
+		e = min(E, R);
+	}
+
+
+	printf("Case #%d: %I64d\n", test + 1, ans);
+}
+
+int main()
+{
+#ifdef SU2_PROJ
+	freopen("input.txt", "rt", stdin);
+	freopen("output.txt", "wt", stdout);
+#endif
+        
+	cout << setprecision(10) << fixed;
+	cerr << setprecision(5) << fixed;
+	
+	int testCount;
+	cin >> testCount;
+	
+	forn(test, testCount)
+	{        
+		assert(read());
+		solve(test);
+	}
+        
+	return 0;
+}

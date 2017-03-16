@@ -1,0 +1,127 @@
+
+
+ //BISMILLAHIRRAHMANIRRAHIM
+/*
+ manus tar shopner soman boro
+ Author :: Shakil Ahmed
+.............AUST_CSE27.........
+ prob   ::
+ Type   ::
+ verdict::
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <math.h>
+#include <limits.h>
+#include <set>
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <stack>
+#include <string>
+#include <list>
+#include <map>
+#include <queue>
+#include <sstream>
+#include <utility>
+#define pb push_back
+#define mp make_pair
+#define pi acos(-1.0)
+#define ff first
+#define LL long long
+#define ss second
+#define rep(i,n) for(i = 0; i < n; i++)
+#define REP(i,n) for(i=n;i>=0;i--)
+#define FOR(i,a,b) for(int i = a; i <= b; i++)
+#define ROF(i,a,b) for(int i = a; i >= b; i--)
+#define re return
+#define QI queue<int>
+#define SI stack<int>
+#define pii pair <int,int>
+#define MAX
+#define MOD
+#define INF 1<<30
+#define SZ(x) ((int) (x).size())
+#define ALL(x) (x).begin(), (x).end()
+#define sqr(x) ((x) * (x))
+#define memo(a,b) memset((a),(b),sizeof(a))
+#define G() getchar()
+#define MAX3(a,b,c) max(a,max(b,c))
+
+double const EPS=3e-8;
+using namespace std;
+
+
+template< class T > T gcd(T a, T b) { return (b != 0 ? gcd<T>(b, a%b) : a); }
+template< class T > T lcm(T a, T b) { return (a / gcd<T>(a, b) * b); }
+template <class T> inline T bigmod(T p,T e,T M)
+{
+    if(e==0)return 1;
+    if(e%2==0){LL t=bigmod(p,e/2,M);return (T)((t*t)%M);}
+    return (T)((LL)bigmod(p,e-1,M)*(LL)p)%M;
+}
+
+template <class T> inline T modinverse(T a,T M){return bigmod(a,M-2,M);}
+//Fast Reader
+template<class T>inline bool read(T &x){int c=getchar();int sgn=1;while(~c&&c<'0'||c>'9'){if(c=='-')sgn=-1;c=getchar();}for(x=0;~c&&'0'<=c&&c<='9';c=getchar())x=x*10+c-'0'; x*=sgn; return ~c;}
+
+/* **************************************  My code start here ****************************************** */
+string inp[105];
+int idx[105] , len[105] , cnt[105] , n;
+bool HI()
+{
+    int i ;
+    for ( i = 1 ; i < n ; i++ )
+    {
+        if(inp[i][idx[i]]!=inp[i-1][idx[i-1]]) { return false;}
+    }
+    return true;
+}
+int main()
+{
+   freopen("input.txt","r",stdin);
+   freopen("output.txt","w",stdout);
+     int cs , t ;
+     cin >> t ;
+     for ( cs = 1 ; cs <= t ; cs++ )
+     {
+         int  i , j , k;
+         cin >> n ;
+         rep(i,n) { cin >> inp[i]; len[i] = inp[i].size(); }
+         bool ok = true;
+         memo(idx,0);
+         long long int res = 0 ;
+         while(idx[0] < len[0] && ok )
+         {
+             ok = HI();
+             if(ok == false ) break;
+
+             for( i = 0 ; i < n ; i++ )
+             {   cnt[i] = 1;
+                 while( idx[i]+1 < len[i] && inp[i][idx[i]] == inp[i][idx[i]+1] ) { idx[i]++; cnt[i]++; }
+                 idx[i]++;
+                // printf("i :: %d idx::: %d\n",i,idx[i]);
+             }
+             map < int , int > vis;
+             long long int tmp = -1 , ans = 0 ;
+             for ( j = 0 ; j < n ; j++ )
+             {   ans = 0 ;
+                 if(vis[cnt[j]]) continue;
+                 vis[cnt[j]]=1;
+                 int t = cnt[j];
+                 for ( k = 0 ; k < n ; k++ ) ans += abs(t-cnt[k]);
+                 if ( tmp ==-1 || tmp > ans ) tmp = ans;
+             }
+             res += tmp;
+         }
+         for ( i = 1 ; i < n && ok ; i++ ) if ( idx[i] < len[i] ) ok = false;
+         if(ok==false) printf("Case #%d: Fegla Won\n",cs);
+         else
+         printf("Case #%d: %lld\n",cs,res);
+
+     }
+   return 0;
+}

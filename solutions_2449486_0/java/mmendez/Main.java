@@ -1,0 +1,312 @@
+import java.io.*;
+ 
+public class Main {
+ 
+    static void solve() throws Exception{
+        int T = in.readInt(),t = 0;
+        String format = "Case #%d: %s";
+        int N,M,temp,maxi,max1,maxj,max2;
+        int[][] L;
+        boolean[][] A;
+        boolean b;
+        while(t++<T){
+            N = in.readInt();
+            M = in.readInt();
+            L = in.readIntMat(N,M);
+            A = new boolean[N][M];
+            b = true;
+            for(int i=0; i<N && b; i++){
+                maxi = 0;
+                max1 = L[i][0];
+                for(int j=1; j<M; j++){
+                    if(max1 < L[i][j]){
+                        max1 = L[i][j];
+                        maxi = j;
+                    }
+                }
+                for(int j=0; j<M; j++){
+                    if(max1 > L[i][j]){
+                        A[i][j] = true;
+                    }
+                }
+            }
+            for(int i=0; i<M && b; i++){
+                maxj = 0;
+                max2 = L[0][i];
+                for(int j=1; j<N; j++){
+                    if(max2 < L[j][i]){
+                        max2 = L[j][i];
+                        maxj = j;
+                    }
+                }
+                for(int j=0; j<N && b; j++){
+                    if(max2 > L[j][i] && A[j][i]){
+                        b = false;
+                    }
+                }
+            }
+            out.printf(format,t,b ? "YES" : "NO");
+            out.println();
+        }
+    }
+    
+    static InputReader in;
+    static OutputWriter out;
+    
+    static void start() throws FileNotFoundException{
+        //in = new InputReader(System.in);
+        in = new InputReader(new FileInputStream(new File("test.in")));
+        //out = new OutputWriter(System.out);
+        out = new OutputWriter(new FileOutputStream(new File("test.out")));
+    }
+        
+    static void finish() throws Exception{
+        out.close();
+    }
+ 
+    public static void main(String[] args) throws Exception {
+        start();
+        solve();
+        finish();
+    }
+}
+ 
+class InputReader extends BufferedInputStream{
+    
+    public InputReader(InputStream In){
+        super(In);
+    }
+    
+    public char readChar() throws Exception{
+        int c = read();
+        while(isStringEnd(c))
+            c = read();
+        return (char) c;
+    }
+    
+    public int readInt() throws Exception {
+        int sign = 1;
+        int cur = 0;
+        int c = read();
+        while(isStringEnd(c))
+            c = read();
+        if(c == '-'){
+            sign = -1;
+            c = read();
+        }
+        do{
+            cur *= 10;
+            cur += c - '0';
+            c = read();
+        }while(!isStringEnd(c));
+        return cur*sign;
+    }
+    
+    public long readLong() throws Exception {
+        long sign = 1;
+        long cur = 0;
+        int c = read();
+        while(isStringEnd(c))
+            c = read();
+        if(c == '-'){
+            sign = -1;
+            c = read();
+        }
+        do{
+            cur *= 10;
+            cur += c - '0';
+            c = read();
+        }while(!isStringEnd(c));
+        return cur*sign;
+    }
+    
+    public double readDouble() throws Exception {
+        double sign = 1;
+        double cur = 0;
+        int c = read();
+        while(isStringEnd(c))
+            c = read();
+        if(c == '-'){
+            sign = -1;
+            c = read();
+        }
+        do{
+            cur *= 10;
+            cur += c - '0';
+            c = read();
+        }while(!isStringEnd(c) && c!= '.');
+        if(c == '.'){
+            c = read();
+            double r = 0.1;
+            do{
+                cur += r*(c - '0');
+                r *= 0.1;
+                c = read();
+            }while(!isStringEnd(c) && c!= '.');
+        }
+        return cur*sign;
+    }
+    
+    public String readStr() throws Exception{
+        int c = readChar();
+        while(isStringEnd(c))
+            c = read();
+        StringBuilder res = new StringBuilder();
+        do{
+            res.append((char)c);
+            c = read();
+        }while(!isStringEnd(c));
+        return res.toString();
+    }
+    
+    public String readLine() throws Exception{
+        int c = readChar();
+        while(isStringEnd(c))
+            c = read();
+        StringBuilder res = new StringBuilder();
+        do{
+            res.append((char)c);
+            c = read();
+        }while(!isEOL(c));
+        return res.toString();
+    }
+    
+    public char[] readCharArray(int s) throws Exception{
+        char[] a = new char[s];
+        for(int i=0; i<s; i++)
+            a[i] = readChar();
+        return a;
+    }
+    
+    public int[] readIntArray(int s) throws Exception{
+        int[] a = new int[s];
+        for(int i=0; i<s; i++)
+            a[i] = readInt();
+        return a;
+    }
+    
+    public long[] readLongArray(int s) throws Exception{
+        long[] a = new long[s];
+        for(int i=0; i<s; i++)
+            a[i] = readLong();
+        return a;
+    }
+        
+    public double[] readDoubleArray(int s) throws Exception{
+        double[] a = new double[s];
+        for(int i=0; i<s; i++)
+            a[i] = readDouble();
+        return a;
+    }
+    
+    public String[] readStrArray(int s) throws Exception{
+        String[] a = new String[s];
+        for(int i=0; i<s; i++)
+            a[i] = readStr();
+        return a;
+    }
+        
+    public char[][] readCharMat(int rows,int cols) throws Exception{
+        char[][] a = new char[rows][];
+        for(int i=0; i<rows; i++)
+            a[i] = readCharArray(cols);
+        return a;
+    }
+    
+    public int[][] readIntMat(int rows,int cols) throws Exception{
+        int[][] a = new int[rows][];
+        for(int i=0; i<rows; i++)
+            a[i] = readIntArray(cols);
+        return a;
+    }
+    
+    public long[][] readLongMat(int rows,int cols) throws Exception{
+        long[][] a = new long[rows][];
+        for(int i=0; i<rows; i++)
+            a[i] = readLongArray(cols);
+        return a;
+    }
+        
+    public double[][] readDoubleMat(int rows,int cols) throws Exception{
+        double[][] a = new double[rows][];
+        for(int i=0; i<rows; i++)
+            a[i] = readDoubleArray(cols);
+        return a;
+    }
+    
+    public String[][] readStrMat(int rows,int cols) throws Exception{
+        String[][] a = new String[rows][];
+        for(int i=0; i<rows; i++)
+            a[i] = readStrArray(cols);
+        return a;
+    }
+        
+    private boolean isStringEnd(int c) {
+        return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+    }
+    
+    private boolean isEOL(int c) {
+        return c == '\n' || c == '\r';
+    }
+}
+ 
+class OutputWriter extends PrintWriter{
+    
+    public OutputWriter(OutputStream out){
+        super(out);
+    }
+    
+    public <T> void printArray(T[] a, String del){
+        for(int i=0; i<a.length; i++){
+            if(i!=0)
+                print(del);
+            print(a[i]);
+        }
+    }
+    
+    public <T> void printMat(T[][] a, String delRows, String delCols){
+        for(int i=0; i<a.length; i++){
+            if(i!=0)
+                print(delRows);
+            for(int j=0; i<a[i].length; i++){
+                if(j!=0)
+                    print(delCols);
+                print(a[i][j]);
+            }
+        }
+    }
+    
+    public <T> void printCollection(Iterable<T> c, String del){
+        boolean b = true;
+        for(T i : c){
+            if(b)
+                b = false;
+            else
+                print(del);
+            print(i);
+        }
+    }
+}
+
+class Tuple<U,V> implements Comparable<Tuple<U,V>>{
+
+    public U x;
+    public V y;
+    
+    public Tuple(U f, V s){
+        x = f;
+        y = s;
+    }
+    
+    public int compareTo(Tuple<U, V> o) {
+        int ans = ((Comparable<U>)x).compareTo(o.x);
+        if(ans == 0)
+            return ((Comparable<V>)y).compareTo(o.y);
+        return ans;
+    }
+    
+    @Override
+    public String toString(){
+        return x.toString() + " " + y.toString();
+    }
+}

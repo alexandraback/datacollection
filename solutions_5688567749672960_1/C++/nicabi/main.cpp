@@ -1,0 +1,86 @@
+#include<cstdio>
+using namespace std;
+long long Q,QQ,n,c,s,x,y,inv,i,j,k,p;
+long long rez,p1,b[20];
+int main()
+{
+    freopen("input","r",stdin);
+    freopen("output","w",stdout);
+    scanf("%lld",&Q);
+    b[1]=1;
+    b[2]=10;
+    n=99;
+    for(j=3;j<=15;j++)
+    {
+        rez=1;
+        p=1;
+        c=n;
+        k=1;
+        while(c>9)
+        {
+            k++;
+            p=p*10;
+            c/=10;
+        }
+        p1=1;
+        x=c;
+        y=n%p;
+        s=x+y;
+        rez+=b[k];
+        for(i=2;i<=k/2+1;i++)
+        {
+            p1*=10;p/=10;
+            x=p1*(y/p)+x;
+            y%=p;
+            if(s>x+y)s=x+y;
+        }
+        rez+=s;
+        b[j]=rez;
+        n=n*10+9;
+    }
+    while(QQ<Q)
+    {
+        QQ++;
+        printf("Case #%d: ",QQ);
+        scanf("%lld",&n);
+        if(n<100)
+        {
+            if(n<=20)rez=n;
+            else
+            {
+                if(n%10>=1)rez=10+n/10+n%10;
+                else rez=19+n/10;
+            }
+        }
+        else
+        {
+            rez=0;
+            if(n%10==0){n--;rez++;}
+            p=1;
+            c=n;
+            k=1;
+            while(c>9)
+            {
+                k++;
+                p=p*10;
+                c/=10;
+            }
+            p1=1;
+            x=c;
+            y=n%p;
+            s=x+y;
+            if(x==1)s--;
+            rez+=b[k];
+            for(i=2;i<=k/2+1;i++)
+            {
+                p1*=10;p/=10;
+                x=p1*(y/p)+x;
+                y%=p;
+                if(s>x+y)s=x+y;
+            }
+            rez+=s;
+        }
+        printf("%lld\n",rez);
+    }
+    return 0;
+}

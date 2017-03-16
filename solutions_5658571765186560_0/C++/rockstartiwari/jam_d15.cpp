@@ -1,0 +1,72 @@
+#include<stdio.h>
+int main()
+{
+	int t;
+	freopen("C:\\Users\\Gaurav\\Desktop\\dl.in","r",stdin);
+    freopen("C:\\Users\\Gaurav\\Desktop\\output.txt","w",stdout);
+	scanf("%d",&t);
+	int ca=0;
+	while(t--)
+	{
+		ca++;
+		int a,b,c;
+		scanf("%d%d%d",&c,&a,&b);
+		printf("Case #%d: ",ca);
+		if(c==1)
+			printf("GABRIEL");
+		if(c==2)
+		{
+			if((a*b)%2==0)
+			printf("GABRIEL");
+			else
+			printf("RICHARD");
+		}
+		if(c==3)
+		{
+			if(a==1)
+			printf("RICHARD");
+			if(a==2)
+			{
+				if(b==3)
+				printf("GABRIEL");
+				else
+				printf("RICHARD");
+			}
+			if(a==3)
+			{
+				if(b==1)
+				printf("RICHARD");
+				else
+				printf("GABRIEL");
+			}
+			if(a==4)
+			{
+				if(b==1||b==2||b==4)
+				printf("RICHARD");
+				else
+				printf("GABRIEL");
+			}
+		}
+		if(c==4)
+		{
+			if(a==1||a==2)
+			printf("RICHARD");
+			if(a==3)
+			{
+				if(b==1||b==2||b==3)
+				printf("RICHARD");
+				else
+				printf("GABRIEL");
+			}
+			if(a==4)
+			{
+				if(b==1||b==2)
+				printf("RICHARD");
+				else
+				printf("GABRIEL");
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}

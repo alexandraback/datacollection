@@ -1,0 +1,114 @@
+﻿using System;
+using StoreCredit;
+
+namespace TicTacToeTomek
+{
+    class Program
+    {
+        private const char EmptyCell = '.';
+        private const char XCell = 'X';
+        private const char YCell = 'O';
+        private const char TCell = 'T';
+        private const byte ArraySize = 4;
+
+        private enum GameState
+        {
+            XWin,
+            YWin,
+            Draw,
+            NotCompleted
+        }
+
+        static void Main(string[] args)
+        {
+            if (args[0] == null)
+            {
+                Console.WriteLine("Input file path");
+                return;
+            }
+
+            int testsCount;
+            var inputDescks = FileReader.GetDescks(args[0], ArraySize, out testsCount);
+
+            var getResult = new Func<GameState, string>(gameState =>
+                {
+                    switch (gameState)
+                    {
+                        case GameState.XWin:
+                            return string.Format("{0} won", XCell);
+                        case GameState.YWin:
+                            return string.Format("{0} won", YCell);
+                        case GameState.Draw:
+                            return "Draw";
+                        case GameState.NotCompleted:
+                            return "Game has not completed";
+                        default:
+                            return "Unknown";
+                    }
+                });
+
+            for (var index = 0; index < inputDescks.Count; index++)
+            {
+                var inputDesck = inputDescks[index];
+                var gameState = ProcessInputDesck(inputDesck);
+
+                Console.WriteLine("Case #{0}: {1}", index + 1, getResult(gameState));
+            }
+            Console.ReadKey();
+        }
+
+        private static GameState ProcessInputDesck(char[,] input)
+        {
+            var getGameState = new Func<Func<int, int, char>,int, int, GameState, GameState>((localGetCell, startIndex, endBoundary, defaultGameState) =>
+                {
+                    var localGameState = defaultGameState;
+                    for (int i = startIndex; i < endBoundary; i++)
+                    {
+                        var startSymbol = localGetCell(i, 0);
+                        if (startSymbol.Equals(EmptyCell))
+                        {
+                            localGameState = GameState.NotCompleted;
+                            continue;
+                        }
+                        for (int j = 1; j < ArraySize; j++)
+                        {
+                            var currentSymbol = localGetCell(i, j);
+                            if (EmptyCell.Equals(currentSymbol))
+                            {
+                                localGameState = GameState.NotCompleted;
+                                break;
+                            }
+
+                            if (startSymbol.Equals(TCell))
+                            {
+                                startSymbol = currentSymbol;
+                                continue;
+                            }
+                            if (!startSymbol.Equals(currentSymbol) && !TCell.Equals(currentSymbol))
+                                break;
+                            if (j == ArraySize - 1)
+                                localGameState = startSymbol.Equals(XCell) ? GameState.XWin : GameState.YWin;
+                        }
+                        if (localGameState == GameState.XWin || localGameState == GameState.YWin)
+                            break;
+
+                    }
+                    return localGameState;
+                });
+
+
+            var gameState = getGameState((x, y) => input[x, y], 0, ArraySize, GameState.Draw);
+
+            if (gameState == GameState.Draw || gameState == GameState.NotCompleted)
+                gameState = getGameState((x, y) => input[y, x], 0, ArraySize, gameState);
+
+            if (gameState == GameState.Draw || gameState == GameState.NotCompleted)
+                gameState = getGameState((x, y) => input[y, y], 0, 1, gameState);
+
+            if (gameState == GameState.Draw || gameState == GameState.NotCompleted)
+                gameState = getGameState((x, y) => input[y, ArraySize - 1 - y], ArraySize - 1, ArraySize, gameState);
+
+            return gameState;
+        }
+    }
+}

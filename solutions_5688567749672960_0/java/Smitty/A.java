@@ -1,0 +1,240 @@
+import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class A {
+
+    private static final boolean DEBUG = true;
+
+    private final void solve(final InputReader in, final OutputWriter out) throws Exception {
+        for (int caseIndex = 1, caseCount = in.nextInt(); caseIndex <= caseCount; ++caseIndex) {
+
+            int n = in.nextInt();
+
+            int pow10 = 1;
+            while (pow10 / n < 10) {
+                pow10 *= 10;
+            }
+
+            final int maxn = pow10 + 1;
+
+            int[] dist = new int[maxn];
+
+            dist[1] = 1;
+            LinkedList<Integer> q = new LinkedList<Integer>();
+            q.add(1);
+
+            while (!q.isEmpty()) {
+                int v = q.pollFirst();
+                if (v + 1 < maxn && dist[v + 1] == 0) {
+                    dist[v + 1] = dist[v] + 1;
+                    q.add(v + 1);
+                }
+
+                StringBuilder sb = new StringBuilder().append(v).reverse();
+                while (sb.length() > 1 && sb.charAt(0) == '0') {
+                    sb.delete(0, 1);
+                }
+                int rev = Integer.parseInt(sb.toString());
+                if (rev == 0) {
+                    continue;
+                }
+                if (rev >= maxn) {
+                    continue;
+                }
+                if (dist[rev] == 0) {
+                    dist[rev] = dist[v] + 1;
+                    q.add(rev);
+                }
+            }
+
+            int result = dist[n];
+            out.writeln(String.format("Case #%d: %d", caseIndex, result));
+        }
+    }
+
+    public static void main(String[] _args) {
+        final String[] args = _args;
+        Thread th = new Thread(null, new Runnable() {
+            @Override
+            public void run() {
+                runMain(args);
+            }
+        }, "test", 32 << 20);
+        th.setPriority(Thread.MAX_PRIORITY);
+        th.start();
+        try {
+            th.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static final void runMain(String[] args) {
+        try {
+
+            final InputReader in;
+            final OutputWriter out;
+
+            if (DEBUG) {
+
+                final String fileIn = A.class.getSimpleName().toLowerCase() + ".in";
+                final String fileOut = A.class.getSimpleName().toLowerCase() + ".out";
+
+                in = new InputReader(new FileInputStream(fileIn));
+                out = new OutputWriter(new FileWriter(fileOut));
+            } else {
+
+                in = new InputReader(System.in);
+                out = new OutputWriter(new OutputStreamWriter(System.out));
+            }
+
+            new A().solve(in, out);
+
+            out.close();
+
+        } catch (Exception ex) {
+
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private static final class InputReader {
+
+        private static final byte ZERO = '0';
+        private static final byte NINE = '9';
+
+        private static final int BUFFER_SIZE = 32 << 20;
+
+        private final BufferedInputStream in;
+
+        private final byte[] buffer = new byte[BUFFER_SIZE];
+        private int bufferSize = 0;
+        private int offset = buffer.length;
+        private final StringBuilder sb = new StringBuilder(1 << 20);
+
+        private InputReader(final InputStream in) {
+            this.in = (in instanceof BufferedInputStream) ? ((BufferedInputStream) in) : (new BufferedInputStream(in));
+        }
+
+        private final int read() throws Exception {
+            if (offset >= bufferSize) {
+                bufferSize = in.read(buffer);
+                if (bufferSize <= 0) {
+                    return -1;
+                }
+                offset = 0;
+            }
+            return buffer[offset++];
+        }
+
+        private final boolean isWhiteSpace(final int c) {
+            return c == ' ' || c == '\r' || c == '\t' || c == '\n' || c == -1;
+        }
+
+        public final String next() throws Exception {
+            sb.setLength(0);
+            int c = read();
+            while (isWhiteSpace(c)) {
+                c = read();
+            }
+            while (!isWhiteSpace(c)) {
+                sb.append((char) c);
+                c = read();
+            }
+            return sb.toString();
+        }
+
+        public final char nextChar() throws Exception {
+            int c = read();
+            while (isWhiteSpace(c)) {
+                c = read();
+            }
+            return (char) c;
+        }
+
+        public final int nextInt() throws Exception {
+            int result = 0;
+            boolean negative = false;
+            int c = read();
+            while (isWhiteSpace(c)) {
+                c = read();
+            }
+            if (c == '-') {
+                negative = true;
+                c = read();
+            }
+            while (!isWhiteSpace(c)) {
+                result = result * 10 - '0' + c;
+                c = read();
+            }
+            return negative ? -result : result;
+        }
+
+        public final long nextLong() throws Exception {
+            long result = 0;
+            boolean negative = false;
+            int c = read();
+            while (isWhiteSpace(c)) {
+                c = read();
+            }
+            if (c == '-') {
+                negative = true;
+                c = read();
+            }
+            while (!isWhiteSpace(c)) {
+                result = result * 10 - '0' + c;
+                c = read();
+            }
+            return negative ? -result : result;
+        }
+    }
+
+    private static final class OutputWriter {
+
+        private static final String NEW_LINE = String.format("%n");
+
+        private final Writer output;
+        private final StringBuilder buffer = new StringBuilder(32 << 20);
+
+        public OutputWriter(final Writer output) {
+
+            this.output = output;
+        }
+
+        public void write(final int i) {
+
+            buffer.append(i);
+        }
+
+        public void write(final String s) {
+
+            buffer.append(s);
+        }
+
+        public void writeln(final String s) {
+
+            buffer.append(s);
+            buffer.append(NEW_LINE);
+        }
+
+        public void writeln(final long l) {
+
+            buffer.append(l);
+            buffer.append(NEW_LINE);
+        }
+
+        public void writeln(final int i) {
+
+            buffer.append(i);
+            buffer.append(NEW_LINE);
+        }
+
+        public void close() throws Exception {
+
+            output.write(buffer.toString());
+            output.flush();
+            output.close();
+        }
+    }
+}
