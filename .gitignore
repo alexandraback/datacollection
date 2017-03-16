@@ -1,0 +1,4 @@
+*.py~
+.DS_Store
+.gitignore~
+*pyc
