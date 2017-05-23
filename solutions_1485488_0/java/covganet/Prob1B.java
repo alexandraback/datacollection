@@ -13,7 +13,7 @@ public class Prob1B {
 	static int n = 0, m = 0;
 	
 	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new FileReader("B-small-attempt0.in"));
+		BufferedReader br = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		PrintWriter pw = new PrintWriter(new FileWriter("output.txt"));
 		int t = Integer.parseInt(br.readLine());
 		for(int x = 1; x <= t; x++) {

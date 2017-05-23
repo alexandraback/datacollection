@@ -119,7 +119,7 @@ public class TideGoesInTideGoesOut implements Runnable {
 
 	public void run() {
 		try {
-			br = new BufferedReader(new FileReader("B.in"));
+			br = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 			out = new PrintWriter("B.out");
 
 			int t = nextInt();

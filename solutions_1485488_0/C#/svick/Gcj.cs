@@ -22,9 +22,9 @@ namespace GCJ_base
             using (TextWriter writer = Console.Out)
 #else
             string size = Small ? string.Format("small-attempt{0}", Attempt) : "large";
-            string inputFile = string.Format(@"C:\Users\Svick\Downloads\{0}-{1}.in", Problem, size);
+            string "/home/useruser/datacollection/input/1485488_0.in" = string.Format(@"C:\Users\Svick\Downloads\{0}-{1}.in", Problem, size);
             string outputFile = string.Format(@"C:\Users\Svick\Desktop\GCJ\{0}-{1}.txt", Problem, size);
-            using (TextReader reader = new StreamReader(inputFile))
+            using (TextReader reader = new StreamReader("/home/useruser/datacollection/input/1485488_0.in"))
             using (TextWriter writer = new StreamWriter(outputFile))
 #endif
             {

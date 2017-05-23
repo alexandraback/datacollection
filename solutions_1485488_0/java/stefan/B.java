@@ -11,7 +11,7 @@ import java.util.Stack;
 public class B {
 	public static final String FILENAME = "B-small";
 	public static void main(String[] args) throws IOException {
-		BufferedReader in = new BufferedReader(new FileReader("src/"+FILENAME+".in"));
+		BufferedReader in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		BufferedWriter out = new BufferedWriter(new FileWriter("src/"+FILENAME+".out"));
 		Scanner s = new Scanner(in);
 		int T = s.nextInt();

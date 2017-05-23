@@ -6,13 +6,13 @@ import java.io.*;
 
 public final class TideGoesInTideGoesOut {
 
-	private final static String FILE_IN = TideGoesInTideGoesOut.class
+	private final static String "/home/useruser/datacollection/input/1485488_0.in" = TideGoesInTideGoesOut.class
 			.getSimpleName() + ".in";
 	private final static String FILE_OUT = TideGoesInTideGoesOut.class
 			.getSimpleName() + ".out";
 
 	public static final void main(final String[] args) throws Exception {
-		final Scanner in = new Scanner(new File(FILE_IN));
+		final Scanner in = new Scanner(new File("/home/useruser/datacollection/input/1485488_0.in"));
 		final PrintWriter out = new PrintWriter(FILE_OUT);
 		final int testCnt = in.nextInt();
 		for (int caseNum = 1; caseNum <= testCnt; ++caseNum) {

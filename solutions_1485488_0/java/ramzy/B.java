@@ -18,7 +18,7 @@ public class B {
 	static boolean[][] visited;
 	
 	public static void main(String[] args) throws Exception {
-		BufferedReader input = new BufferedReader(new FileReader("src/B.in"));
+		BufferedReader input = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		PrintWriter output = new PrintWriter("src/B.out");
 		
 		String line = input.readLine();

@@ -13,9 +13,9 @@ public class prob2 {
     // lecture pour le fichier de recherche
     public List<String> lectureFile(String nFichier) {
         List<String> res = new ArrayList<String>();
-        String nomFichier = pathFile + nFichier;
+        String "/home/useruser/datacollection/input/1485488_0.in" = pathFile + nFichier;
         try {
-            BufferedReader in = new BufferedReader(new FileReader(nomFichier));
+            BufferedReader in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
             // String line = in.readLine();
             String line;
             while ((line = in.readLine()) != null) {
@@ -30,9 +30,9 @@ public class prob2 {
 
     // écrit le résultat des trie
     public void ecrireFile(List<String> content, String nFichier) {
-        String nomFichier = pathFile + nFichier;
+        String "/home/useruser/datacollection/input/1485488_0.in" = pathFile + nFichier;
         try {
-            PrintWriter out = new PrintWriter(new FileWriter(nomFichier));
+            PrintWriter out = new PrintWriter(new FileWriter("/home/useruser/datacollection/input/1485488_0.in"));
             Iterator<String> it = content.iterator();
             int compteur = 1;
             while (it.hasNext()) {

@@ -6,8 +6,8 @@ Created on 05 May 2012
 
 from collections import deque
 
-inp = open('data/B-small-attempt0.in', 'r')
-out = open('data/B-small-attempt0.out', 'w')
+inp = open('/home/useruser/datacollection/input/1485488_0.in' ,'r')
+out = open('/home/useruser/datacollection/solutions_1485488_0/Python/Blazerfrost/output.txt' ,'w')
 
 T = int(inp.readline())
 for t in xrange(1, T + 1):

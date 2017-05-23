@@ -4,7 +4,7 @@ import java.util.*;
 class tide implements Comparator {
 	public static void main (String [] args) throws IOException {
 		long start = System.currentTimeMillis();
-		BufferedReader br = new BufferedReader(new FileReader("tide.in"));
+		BufferedReader br = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("tide.out")));
 		int T = Integer.parseInt(br.readLine());
 		for (int i = 0; i < T; i++) {

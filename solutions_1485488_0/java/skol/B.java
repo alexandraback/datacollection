@@ -143,13 +143,13 @@ public class B {
 	private static Scanner sc; private static PrintWriter fw;
 
 	public static void main(String[] args) throws Exception {
-		String inFile;
-		inFile = "input.txt";
-		inFile = "B-small-attempt0.in";
-//		inFile = "A-large.in";
+		String "/home/useruser/datacollection/input/1485488_0.in";
+		"/home/useruser/datacollection/input/1485488_0.in" = "input.txt";
+		"/home/useruser/datacollection/input/1485488_0.in" = "B-small-attempt0.in";
+//		"/home/useruser/datacollection/input/1485488_0.in" = "A-large.in";
 		
 		sc = new Scanner(System.in);
-		sc = new Scanner(new FileInputStream(inFile));
+		sc = new Scanner(new FileInputStream("/home/useruser/datacollection/input/1485488_0.in"));
 		
 		fw = new PrintWriter(new FileWriter("output.txt", false));
 

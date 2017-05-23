@@ -114,7 +114,7 @@ public class ProblemB {
 
 	public void run() throws Exception {
 
-		BufferedReader r = new BufferedReader(new FileReader("input.txt"));
+		BufferedReader r = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		int numCases = new InputParser(r.readLine()).readInt();
 
 		for (int caseIndex = 0; caseIndex < numCases; caseIndex++) {

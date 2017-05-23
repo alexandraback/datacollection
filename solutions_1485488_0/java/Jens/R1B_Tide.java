@@ -181,7 +181,7 @@ public class R1B_Tide {
 
 	public R1B_Tide() throws Throwable {
 		if (test) {
-			in = new BufferedReader(new FileReader(new File(testDataFile)));
+			in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in")));
 			out = new BufferedWriter(new FileWriter(getClass().getCanonicalName() + "-out.txt"));
 		} else {
 			new BufferedReader(inp);
@@ -192,6 +192,6 @@ public class R1B_Tide {
 	static BufferedReader in = new BufferedReader(inp);
 	static BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 
-//	static String testDataFile = "testdata.txt";
-	static String testDataFile = "B-small-attempt2.in";
+//	static String "/home/useruser/datacollection/input/1485488_0.in" = "testdata.txt";
+	static String "/home/useruser/datacollection/input/1485488_0.in" = "B-small-attempt2.in";
 }

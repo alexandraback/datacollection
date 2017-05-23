@@ -164,7 +164,7 @@ public class B {
 
 	public static void main(String[] args) {
 		try {
-			br = new BufferedReader(new FileReader("b.in"));
+			br = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 			out = new PrintWriter("b.out");
 			solve();
 			out.close();

@@ -41,7 +41,7 @@ public class Tide {
 		
 		private void solve(String filePrefix) throws Exception {
 			
-			StreamTokenizer st = new StreamTokenizer(new BufferedReader(new FileReader(filePrefix + ".in")));
+			StreamTokenizer st = new StreamTokenizer(new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in")));
 			PrintWriter pw = new PrintWriter(new FileWriter(filePrefix + ".out"));
 			
 			st.nextToken();

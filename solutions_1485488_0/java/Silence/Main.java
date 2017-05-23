@@ -16,7 +16,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-		Scanner sc = new Scanner(new FileReader("input.txt"));
+		Scanner sc = new Scanner(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		PrintWriter pw = new PrintWriter(new FileWriter("output.txt"));
 		int tN = sc.nextInt();
 		sc.nextLine();

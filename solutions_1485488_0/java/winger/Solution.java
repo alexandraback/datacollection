@@ -67,7 +67,7 @@ public class Solution {
 	}
 
 	public void run() throws IOException {
-		in = new BufferedReader(new FileReader(file + ".in"));
+		in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		out = new PrintWriter(file + ".out");
 		eat("");
 		

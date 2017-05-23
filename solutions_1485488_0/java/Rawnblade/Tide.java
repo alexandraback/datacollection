@@ -8,7 +8,7 @@ public class Tide {
 	static int[] dy = new int[]{0,1,0,-1};
 	static int N,M,H;
 	public static void main(String[] args) throws Exception{
-		Scanner reader = new Scanner(new File("bdata.in"));
+		Scanner reader = new Scanner(new File("/home/useruser/datacollection/input/1485488_0.in"));
 		int times = reader.nextInt();
 		for(int t = 1; t <= times; t++){
 			int h = reader.nextInt(); H = h;

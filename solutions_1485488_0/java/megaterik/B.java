@@ -18,7 +18,7 @@ public class B implements Runnable {
     public void run() {
         try {
             long t1 = System.currentTimeMillis();
-            in = new BufferedReader(new FileReader("src/input.txt"));
+            in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
             out = new PrintWriter(new FileWriter("src/output.txt"));
             Locale.setDefault(Locale.US);
             solve();

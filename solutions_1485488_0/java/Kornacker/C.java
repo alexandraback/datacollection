@@ -8,7 +8,7 @@ public class C {
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		in = new Scanner(new InputStreamReader(new FileInputStream("c_in.txt")));
+		in = new Scanner(new InputStreamReader(new FileInputStream("/home/useruser/datacollection/input/1485488_0.in")));
 		out = new PrintStream(new BufferedOutputStream(new FileOutputStream("c_out.txt")));
 		
 		int n = in.nextInt() ; in.nextLine() ;

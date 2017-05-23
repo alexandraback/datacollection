@@ -1,7 +1,7 @@
 from collections import deque
 
-f = open("p2.in","r")
-g = open("p2.out","w")
+f = open('/home/useruser/datacollection/input/1485488_0.in' ,'r')
+g = open('/home/useruser/datacollection/solutions_1485488_0/Python/mdragus/output.txt' ,'w')
 
 ans = ""
 

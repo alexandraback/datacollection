@@ -155,7 +155,7 @@ partial class Solution
     public void go()
     {
         Environment.CurrentDirectory = "../..";
-        input = File.OpenText(name + ".in");
+        input = File.OpenText("/home/useruser/datacollection/input/1485488_0.in");
         output = File.CreateText(name + ".out");
         int N = ReadLine_int();
         for (cas = 1; cas <= N; cas++)

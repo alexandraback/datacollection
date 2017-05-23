@@ -27,7 +27,7 @@ public class Round1Q3 {
 
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        in = new BufferedReader(new FileReader("input.txt"));
+        in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
         out = new PrintStream("output.txt");
         int T = Integer.parseInt(in.readLine());
         for (int i = 1; i <= T; i++) {

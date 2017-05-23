@@ -84,7 +84,7 @@ def solve(floors, ceilings, water):
 	return '%0.1f' % (time * 0.1)
 
 if __name__ == '__main__':
-	inp = open(FILE_NAME_BASE + '.in', 'r')
+	inp = open('/home/useruser/datacollection/input/1485488_0.in' ,'r')
 	numCases = int(inp.readline())
 	if NUM_PROCESSES == 0:
 		results = [
@@ -99,7 +99,7 @@ if __name__ == '__main__':
 			for _ in range(numCases)
 			]
 	inp.close()
-	out = open(FILE_NAME_BASE + '.out', 'w')
+	out = open('/home/useruser/datacollection/solutions_1485488_0/Python/mth/output.txt' ,'w')
 	for case, result in enumerate(results):
 		value = result if NUM_PROCESSES == 0 else result.get()
 		out.write('Case #%d: %s\n' % (case + 1, value))

@@ -112,7 +112,7 @@ public class B implements Runnable {
 	@Override
 	public void run() {
 		try {
-			br  = new BufferedReader(new FileReader("input.txt"));
+			br  = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 			st  = new StringTokenizer("");
 			out = new PrintWriter("output.txt");
 			int T = nextInt();

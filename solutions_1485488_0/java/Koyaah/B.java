@@ -178,7 +178,7 @@ public class B implements Runnable {
             } catch (Exception ignored) {
             }
 
-            reader = new BufferedReader(new FileReader("B.in"));
+            reader = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
             writer = new PrintWriter(new FileWriter("B.out"));
             tokenizer = null;
 

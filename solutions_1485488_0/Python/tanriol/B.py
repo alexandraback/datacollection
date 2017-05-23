@@ -120,7 +120,7 @@ if __name__ == '__main__':
     print("Initialization done.")
     ## Calculation
     print("Calculation...")
-    with open(FILE + ".in") as infile:
-        with open(FILE + ".out",mode="wt") as outfile:
+    with open('/home/useruser/datacollection/input/1485488_0.in' ,'r') as infile:
+        with open('/home/useruser/datacollection/input/1485488_0.in' ,'r') as outfile:
             solver.run(infile, outfile)
     print("Calculation done.")

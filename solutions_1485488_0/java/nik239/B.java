@@ -8,7 +8,7 @@ public class B {
   private static final int[][] DIRS = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
   public static void main(String[] args) throws IOException {
-    Scanner in = new Scanner(new File("B-small-attempt0.in"));
+    Scanner in = new Scanner(new File("/home/useruser/datacollection/input/1485488_0.in"));
     PrintWriter out = new PrintWriter("b.out");
     int T = in.nextInt();
     for (int t = 1; t <= T; t++) {

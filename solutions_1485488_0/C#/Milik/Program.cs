@@ -232,7 +232,7 @@ namespace R1BP2
         {
             Console.WriteLine(DateTime.Now);
 
-            String[] input = File.ReadAllText("input.txt").Split('\n');
+            String[] input = File.ReadAllText("/home/useruser/datacollection/input/1485488_0.in").Split('\n');
             String output = "";
 
             int curent = 1;

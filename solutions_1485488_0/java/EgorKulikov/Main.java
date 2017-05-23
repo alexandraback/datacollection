@@ -29,7 +29,7 @@ public class Main {
 	public static void main(String[] args) {
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream("input.txt");
+			inputStream = new FileInputStream("/home/useruser/datacollection/input/1485488_0.in");
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

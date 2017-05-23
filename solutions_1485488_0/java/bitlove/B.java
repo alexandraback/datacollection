@@ -81,9 +81,9 @@ public class B {
 	}
 	
 	public static void main(String args[]) throws IOException{
-	//	BufferedReader reader = new BufferedReader(new FileReader(new File("B-large.in")));
-		BufferedReader reader = new BufferedReader(new FileReader(new File("B-small-attempt0.in")));
-	//	BufferedReader reader = new BufferedReader(new FileReader(new File("test.txt")));
+	//	BufferedReader reader = new BufferedReader(new FileReader(new File("/home/useruser/datacollection/input/1485488_0.in")));
+		BufferedReader reader = new BufferedReader(new FileReader(new File("/home/useruser/datacollection/input/1485488_0.in")));
+	//	BufferedReader reader = new BufferedReader(new FileReader(new File("/home/useruser/datacollection/input/1485488_0.in")));
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("B.txt")));
 		String line = reader.readLine();
 		int T = Integer.parseInt(line);

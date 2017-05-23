@@ -97,8 +97,8 @@ def getStartingLocs(f, roof, waterLevel):
                 toExpand += [c]
     return s
 
-inputFile = open("B-small-attempt3.in", 'r')
-outputFile = open("kayakOutSmall3.txt", 'w')
+inputFile = open('/home/useruser/datacollection/input/1485488_0.in' ,'r')
+outputFile = open('/home/useruser/datacollection/solutions_1485488_0/Python/ChevalierMalFet/output.txt' ,'w')
 numTests = int(inputFile.readline())
 
 

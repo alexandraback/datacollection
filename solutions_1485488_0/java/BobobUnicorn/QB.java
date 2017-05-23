@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class QB {
 	public static void main(String[] args) throws IOException {
-		Scanner in = new Scanner(new File("B-small-attempt3.in"));
+		Scanner in = new Scanner(new File("/home/useruser/datacollection/input/1485488_0.in"));
 		PrintWriter out = new PrintWriter(new FileWriter(
 				new File("b-small.out")));
 

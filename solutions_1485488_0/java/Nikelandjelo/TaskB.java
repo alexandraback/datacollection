@@ -190,7 +190,7 @@ public class TaskB {
     }
     
     private void runAll() throws Exception {
-        scanner = new Scanner(new File("input.txt"));
+        scanner = new Scanner(new File("/home/useruser/datacollection/input/1485488_0.in"));
         printWriter = new PrintWriter(new FileWriter("output.txt"));
         int n = scanner.nextInt();
         for (int i = 0; i < n; i++) {

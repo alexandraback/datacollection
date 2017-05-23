@@ -7,7 +7,7 @@ public class CodeJamB
 {
 	public static void main(String args[]) throws Exception
 	{
-		Scanner in = new Scanner(new File("in.txt"));
+		Scanner in = new Scanner(new File("/home/useruser/datacollection/input/1485488_0.in"));
 		BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
 		int cases = in.nextInt();
 		for(int casenum = 1;casenum <= cases;casenum++)

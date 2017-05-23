@@ -60,7 +60,7 @@ public class ProblemB {
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		Scanner cin = new Scanner(new File("B.in"));
+		Scanner cin = new Scanner(new File("/home/useruser/datacollection/input/1485488_0.in"));
 		PrintStream cout = new PrintStream("B.out");
 		int caseN = cin.nextInt();
 		for (int caseI=1; caseI <= caseN; caseI++)

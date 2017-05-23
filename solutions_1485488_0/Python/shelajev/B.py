@@ -66,9 +66,9 @@ def main():
     input_file = sys.stdin
     output_path = 'sample.txt'
   else:
-    input_file = open('in/%s.in' % filename, 'r')
+    input_file = open('/home/useruser/datacollection/input/1485488_0.in' ,'r')
     output_path = 'out/%s.out' % filename
-  output_file = open(output_path, 'w')
+  output_file = open('/home/useruser/datacollection/solutions_1485488_0/Python/shelajev/output.txt' ,'w')
   T = int(input_file.readline().rstrip())
   for t in range(1, T+1):
     line = input_file.readline().rstrip().split()

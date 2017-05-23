@@ -167,7 +167,7 @@ public class B {
 
 	private B(String name) {
 		try {
-			in = new BufferedReader(new FileReader("input.txt"));
+			in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 			St = new StringTokenizer("");
 			out = new PrintWriter(new FileWriter("output.txt"));
 		} catch (Exception e) {

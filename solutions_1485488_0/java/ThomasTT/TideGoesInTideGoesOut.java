@@ -90,8 +90,8 @@ public class TideGoesInTideGoesOut {
 	static class DataReader {
 		public BufferedReader br;
 		
-		public DataReader(String filename) throws Exception {
-			br = new BufferedReader(new FileReader(filename));
+		public DataReader(String "/home/useruser/datacollection/input/1485488_0.in") throws Exception {
+			br = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		}
 		
 		public DataReader() throws Exception {
@@ -140,8 +140,8 @@ public class TideGoesInTideGoesOut {
 	static class DataWriter {
 		public BufferedWriter bw;
 		
-		public DataWriter(String filename) throws Exception {
-			bw = new BufferedWriter(new FileWriter(filename));
+		public DataWriter(String "/home/useruser/datacollection/input/1485488_0.in") throws Exception {
+			bw = new BufferedWriter(new FileWriter("/home/useruser/datacollection/input/1485488_0.in"));
 		}
 		
 		public DataWriter() throws Exception {

@@ -17,12 +17,12 @@ struct State : IEquatable<State>
 
 class Problem
 {
-    const string inFile = "..\\..\\bsmall.in";
+    const string "/home/useruser/datacollection/input/1485488_0.in" = "..\\..\\bsmall.in";
     const string outFile = "..\\..\\bsmall.out";
 
     public void Process()
     {
-        using (StreamReader sr = new StreamReader(inFile))
+        using (StreamReader sr = new StreamReader("/home/useruser/datacollection/input/1485488_0.in"))
         {
             using (StreamWriter sw = new StreamWriter(outFile))
             {

@@ -14,7 +14,7 @@ public class C implements Runnable{
 	StringTokenizer tok = new StringTokenizer("");
 	
 	void init() throws FileNotFoundException{
-		in = new BufferedReader(new FileReader("B-small-attempt0.in"));
+		in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		out = new PrintWriter("output.txt");
 	}
 	

@@ -11,7 +11,7 @@ public class B {
 	public static int water;
 	
 	public static void main(String[] args) throws IOException{
-		in = new BufferedReader(new FileReader("B.in"));
+		in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 		PrintWriter out = new PrintWriter(new FileWriter("B.out"));
 		
 		int test = readInt();

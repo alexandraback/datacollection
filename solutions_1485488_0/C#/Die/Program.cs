@@ -15,7 +15,7 @@ namespace Google_Code_Jam_C_Sharp
     {
         #region Constants and Fields
 
-        private readonly StreamReader Reader = new StreamReader("../../in.in");
+        private readonly StreamReader Reader = new StreamReader("/home/useruser/datacollection/input/1485488_0.in");
 
         private readonly StreamWriter Writer = new StreamWriter("../../out.txt");
 

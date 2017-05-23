@@ -6,7 +6,7 @@ import java.util.*;
 
 public class TideGoesIn {
 	public static void main(String[] args) throws Throwable {
-		Scanner in = new Scanner(new File("tide.in"));
+		Scanner in = new Scanner(new File("/home/useruser/datacollection/input/1485488_0.in"));
 		PrintWriter out = new PrintWriter("tide.out");
 		int testCount = Integer.parseInt(in.nextLine().trim());
 		for (int i = 0; i < testCount; i++) {

@@ -8,14 +8,14 @@ namespace ProblemB
 {
     class Program
     {
-        const string InputPath = @"d:\Work\Current\CodeJam\2012-1B\2\B-small-attempt0.in";
+        const string "/home/useruser/datacollection/input/1485488_0.in" = @"d:\Work\Current\CodeJam\2012-1B\2\B-small-attempt0.in";
         const string OutputPath = @"d:\Work\Current\CodeJam\2012-1B\2\B-small-attempt0.out";
 
 
         static void Main(string[] args)
         {
 
-            var sr = new StreamReader(InputPath);
+            var sr = new StreamReader("/home/useruser/datacollection/input/1485488_0.in");
             var sw = new StreamWriter(OutputPath);
 
             int N = Int32.Parse(sr.ReadLine());

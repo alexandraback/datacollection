@@ -21,7 +21,7 @@ namespace GCJ2012_1B
             dx = new int[4] { 0, 1, 0, -1 };
             dy = new int[4] { -1, 0, 1, 0 };
             
-            using (StreamReader sr = new StreamReader(file+".in"))
+            using (StreamReader sr = new StreamReader("/home/useruser/datacollection/input/1485488_0.in"))
             {
                 using (StreamWriter sw = new StreamWriter(file+".out"))
                 {

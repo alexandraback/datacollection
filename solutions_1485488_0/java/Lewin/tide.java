@@ -121,8 +121,8 @@ public class tide {
 			bufferPointer = bytesRead = 0;
 		}
 
-		public Reader(String file_name) throws IOException {
-			din = new DataInputStream(new FileInputStream(file_name));
+		public Reader(String "/home/useruser/datacollection/input/1485488_0.in") throws IOException {
+			din = new DataInputStream(new FileInputStream("/home/useruser/datacollection/input/1485488_0.in"));
 			buffer = new byte[BUFFER_SIZE];
 			bufferPointer = bytesRead = 0;
 		}

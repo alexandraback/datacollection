@@ -36,7 +36,7 @@ public class B {
                 reader = new BufferedReader(new InputStreamReader(System.in));
             } else {
                 out = new PrintStream(new FileOutputStream("source/" + FILENAME + ".out"));
-                reader = new BufferedReader(new FileReader("source/" + FILENAME + ".in"));
+                reader = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

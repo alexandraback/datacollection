@@ -122,9 +122,9 @@ public class B {
 	B() throws Exception{
 		String cn = B.class.getName();
 		String sampleName = cn+"-sample.in";
-		String smallName = cn+"-small-attempt3.in";
+		String "/home/useruser/datacollection/input/1485488_0.in" = cn+"-small-attempt3.in";
 		String largeName = cn+"-large.in";
-		InputStream in = new BufferedInputStream(new FileInputStream(smallName));
+		InputStream in = new BufferedInputStream(new FileInputStream("/home/useruser/datacollection/input/1485488_0.in"));
 		scan = new Scanner(in);
 	}
 	

@@ -23,7 +23,7 @@ public class B implements Runnable {
 	@Override
 	public void run() {
 		try {
-			in = new BufferedReader(new FileReader("input.txt"));
+			in = new BufferedReader(new FileReader("/home/useruser/datacollection/input/1485488_0.in"));
 			out = new PrintWriter("output.txt");
 			Locale.setDefault(Locale.US);
 			tok = new StringTokenizer("");
